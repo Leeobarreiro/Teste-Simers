@@ -11,6 +11,10 @@ require_once "controllers/UserController.php";
 $controller = new UserController();
 $action = $_GET['action'] ?? 'list';
 
+if (isset($_GET['status']) && $_GET['status'] === 'success') {
+    echo "<p style='color: green;'>Usuário criado com sucesso!</p>";
+}
+
 switch ($action) {
     case 'create':
         if ($_POST) {
