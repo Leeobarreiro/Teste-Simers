@@ -1,5 +1,3 @@
-<?php include 'header.php'; ?>
-
 <h2 class="mb-4">Cadastrar Novo Usuário</h2>
 <form action="index.php?action=create" method="POST">
     <div class="form-group">
@@ -31,4 +29,4 @@
     <a href="index.php?action=list" class="btn btn-secondary">Voltar</a> <!-- Botão Voltar -->
 </form>
 
-<?php include 'footer.php'; ?>
+

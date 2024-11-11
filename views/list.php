@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+
 
 <h2 class="mb-4">Lista de Usuários</h2>
 <a href="index.php?action=create" class="btn btn-success mb-3">Cadastrar Novo Usuário</a>
@@ -32,4 +32,3 @@
     </tbody>
 </table>
 
-<?php include 'footer.php'; ?>

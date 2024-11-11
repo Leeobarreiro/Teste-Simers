@@ -1,5 +1,3 @@
-<?php include 'header.php'; ?>
-
 <h2 class="mb-4">Editar Usuário</h2>
 
 <?php if (isset($user)): ?>
@@ -35,4 +33,4 @@
     <div class="alert alert-danger">Usuário não encontrado.</div>
 <?php endif; ?>
 
-<?php include 'footer.php'; ?>
+
