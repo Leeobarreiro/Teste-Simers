@@ -1,6 +1,6 @@
 # Projeto de Cadastro de Usuários
 
-Este é um projeto simples de cadastro de usuários desenvolvido como parte de um teste técnico. Ele permite **criar**, **listar**, **editar** e **excluir** usuários com validações e criptografia de senha. A aplicação utiliza **PHP puro**, PDO para interações com o banco de dados MySQL, e **Bootstrap** para o layout.
+Este é um projeto simples de cadastro de usuários desenvolvido como parte de um teste técnico, ele foi desenvolvido utilizando o **XAMP**. Ele permite **criar**, **listar**, **editar** e **excluir** usuários com validações e criptografia de senha. A aplicação utiliza **PHP puro**, PDO para interações com o banco de dados MySQL, e **Bootstrap** para o layout.
 
 ---
 
