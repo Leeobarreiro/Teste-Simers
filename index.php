@@ -1,11 +1,14 @@
 <?php
 # Arquivo inicial
 
+session_start();
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 require_once "controllers/UserController.php";
 
 $controller = new UserController();
-
-// Exemplo de roteamento básico:
 $action = $_GET['action'] ?? 'list';
 
 switch ($action) {

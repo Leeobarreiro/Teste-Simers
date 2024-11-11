@@ -3,6 +3,9 @@
 
 require_once "config/database.php";
 
+
+require_once "config/database.php";
+
 class User {
     private $conn;
     private $table_name = "users";
