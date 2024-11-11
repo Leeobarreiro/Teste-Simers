@@ -28,7 +28,7 @@
     </div>
     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <a href="index.php?action=list" class="btn btn-secondary">Voltar</a> <!-- Botão Voltar -->
 </form>
 
 <?php include 'footer.php'; ?>
-

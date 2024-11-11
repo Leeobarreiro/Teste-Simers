@@ -23,7 +23,9 @@
                 <td><?php echo $user['telefone']; ?></td>
                 <td>
                     <a href="index.php?action=edit&id=<?php echo $user['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="index.php?action=delete&id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                    <a href="index.php?action=delete&id=<?php echo $user['id']; ?>&csrf_token=<?php echo $_SESSION['csrf_token']; ?>" 
+                        class="btn btn-danger btn-sm" 
+                        onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
                 </td>
             </tr>
         <?php endforeach; ?>

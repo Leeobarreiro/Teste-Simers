@@ -24,9 +24,18 @@ $action = $_GET['action'] ?? 'list';
 <body>
     <div class="container mt-5">
         
-        <?php if (isset($_GET['status']) && $_GET['status'] === 'success'): ?>
-            <div class="alert alert-success">Usuário criado com sucesso!</div>
-        <?php endif; ?>
+        <?php 
+        // Exibe mensagens de sucesso com base no parâmetro `status`
+        if (isset($_GET['status'])) {
+            if ($_GET['status'] === 'success') {
+                echo "<div class='alert alert-success'>Usuário criado com sucesso!</div>";
+            } elseif ($_GET['status'] === 'updated') {
+                echo "<div class='alert alert-success'>Usuário atualizado com sucesso!</div>";
+            } elseif ($_GET['status'] === 'deleted') {
+                echo "<div class='alert alert-success'>Usuário deletado com sucesso!</div>";
+            }
+        }
+        ?>
 
         <?php
         switch ($action) {
@@ -37,34 +46,30 @@ $action = $_GET['action'] ?? 'list';
                 include "views/create.php";
                 break;
 
-                case 'edit':
-                    if (isset($_GET['id'])) {
-                        // Busca o usuário pelo ID
-                        $user = $controller->getUserById($_GET['id']);
-                        
-                        // Verifica se o formulário foi enviado via POST
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                            // Chama a função updateUser e verifica se foi bem-sucedida
-                            $updated = $controller->updateUser($_GET['id'], $_POST);
-                            if ($updated) {
-                                header("Location: index.php?action=list&status=updated");
-                                exit();
-                            } else {
-                                echo "<div class='alert alert-danger'>Erro ao atualizar o usuário.</div>";
-                            }
+            case 'edit':
+                if (isset($_GET['id'])) {
+                    $user = $controller->getUserById($_GET['id']);
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $updated = $controller->updateUser($_GET['id'], $_POST);
+                        if ($updated) {
+                            header("Location: index.php?action=list&status=updated");
+                            exit();
+                        } else {
+                            echo "<div class='alert alert-danger'>Erro ao atualizar o usuário.</div>";
                         }
-                    } else {
-                        echo "<div class='alert alert-danger'>ID do usuário não fornecido para edição.</div>";
                     }
-                    include "views/edit.php";
-                    break;
+                } else {
+                    echo "<div class='alert alert-danger'>ID do usuário não fornecido para edição.</div>";
+                }
+                include "views/edit.php";
+                break;
 
             case 'delete':
                 if (isset($_GET['id'])) {
                     $controller->deleteUser($_GET['id']);
+                    header("Location: index.php?action=list&status=deleted");
+                    exit();
                 }
-                header("Location: index.php?action=list");
-                exit();
                 break;
 
             case 'list':
