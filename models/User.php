@@ -1,9 +1,5 @@
 <?php
 # Modelo de usuário
-
-require_once "config/database.php";
-
-
 require_once "config/database.php";
 
 class User {
@@ -40,25 +36,25 @@ class User {
 
     public function update($id, $nome, $email, $data_nascimento, $telefone, $senha = null) {
         $query = "UPDATE " . $this->table_name . " SET nome = :nome, email = :email, data_nascimento = :data_nascimento, telefone = :telefone";
-
+    
         if ($senha) {
             $query .= ", senha = :senha";
         }
-
+    
         $query .= " WHERE id = :id";
         $stmt = $this->conn->prepare($query);
-
+    
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":nome", $nome);
         $stmt->bindParam(":email", $email);
         $stmt->bindParam(":data_nascimento", $data_nascimento);
         $stmt->bindParam(":telefone", $telefone);
-
+    
         if ($senha) {
             $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
             $stmt->bindParam(":senha", $senha_hash);
         }
-
+    
         return $stmt->execute();
     }
 
@@ -68,6 +64,16 @@ class User {
         $stmt->bindParam(":id", $id);
 
         return $stmt->execute();
+    }
+
+    // Novo método para encontrar um usuário pelo ID
+    public function findUserById($id) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 ?>
